@@ -1,0 +1,23 @@
+/ {
+    behaviors {
+        enc_click: encoder_click {
+            compatible = "zmk,behavior-momentary";
+            label = "ENC_CLICK";
+            #binding-cells = <1>;
+            bindings = <&kp>;
+        };
+    };
+};
+
+&kscan0 {
+    enc0: encoder_0 {
+        compatible = "zmk,encoder";
+        status = "okay";
+
+        a-pin = <1 7>;   /* pin 1.07 */
+        b-pin = <1 2>;   /* pin 1.02 */
+        button-pin = <1 1>; /* pin 1.01 */
+
+        resolution = <4>;
+    };
+};
