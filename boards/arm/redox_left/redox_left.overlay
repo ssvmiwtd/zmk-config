@@ -1,1 +1,21 @@
 
+/ {
+    sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&left_encoder>;
+    };
+};
+
+left_encoder: encoder_left {
+    compatible = "alps,ec11";
+    a-gpios = <&gpio1 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;  // Пин P1.01
+    b-gpios = <&gpio1 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;  // Пин P1.02
+    steps = <24>; // Количество щелчков на один полный оборот
+    status = "okay";
+};
+
+// Если энкодер имеет встроенную кнопку, добавьте ее в матрицу клавиш
+&kscan0 {
+    // Замените "X" и "Y" на реальные row/column индекс, куда подключена кнопка
+    // bindings = < ... существующие привязки ... &kp F1 >;
+};
