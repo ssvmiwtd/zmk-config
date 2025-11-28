@@ -10,6 +10,17 @@
 #include <dt-bindings/zmk/outputs.h>
 
 / {
+    behaviors {
+        // Кастомное поведение для энкодера: громкость или переключение вкладок
+        enc_mode_toggle: enc_mode_toggle {
+            compatible = "zmk,behavior-toggle-layer";
+            label = "ENC_MODE_TOGGLE";
+            #binding-cells = <0>;
+            bindings = <&mo 4>, <&kp LALT>;
+            toggle-layer = <4>;
+        };
+    };
+
     sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder>;
@@ -17,10 +28,19 @@
 
     left_encoder: encoder_left {
         compatible = "alps,ec11";
-        a-gpios = <&gpio1 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;  // P1.01
-        b-gpios = <&gpio1 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;  // P1.02
+        a-gpios = <&gpio1 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&gpio1 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         steps = <24>;
         status = "okay";
+    };
+
+    buttons {
+        compatible = "gpio-keys";
+        encoder_button: encoder_button {
+            label = "ENCODER_BUTTON";
+            gpios = <&gpio1 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+            bindings = <&enc_mode_toggle>;
+        };
     };
 
     keymap {
@@ -28,7 +48,6 @@
 
         default_layer {
             display-name = "Default Layer";
-
             bindings = <
 &kp ESC    &kp N1  &kp N2    &kp N3        &kp N4  &kp N5                                                   &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp BSPC
 &kp TAB    &kp Q   &kp W     &kp E         &kp R   &kp T   &kp LPAR                              &kp RPAR   &kp Y   &kp U   &kp I      &kp O     &kp P     &kp MINUS
@@ -36,13 +55,24 @@
 &kp LSHFT  &kp Z   &kp X     &kp C         &kp V   &kp B   &kp ENTER  &kp BACKSPACE    &kp HOME  &kp END    &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &mt RSHFT RET
 &kp LCTRL  &mo 2   &kp LALT  &kp LEFT_GUI  &mo 1           &kp SPACE  &kp RALT         &kp DEL   &kp SPACE          &mo 2   &kp LEFT   &kp DOWN  &kp UP    &kp RIGHT
             >;
-
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
+        // Слой для переключения вкладок (активируется при удержании кнопки энкодера)
+        encoder_tab_layer {
+            display-name = "Encoder Tab Layer";
+            bindings = <
+&trans   &trans     &trans     &trans     &trans     &trans                                       &trans           &trans  &trans  &trans  &trans       &trans
+&trans   &trans     &trans     &trans     &trans     &trans     &trans                    &trans  &trans           &trans  &trans  &trans  &trans       &trans
+&trans   &trans     &trans     &trans     &trans     &trans     &trans                    &trans  &trans           &trans  &trans  &trans  &trans       &trans
+&trans   &trans     &trans     &trans     &trans     &trans     &trans     &trans    &trans  &trans  &trans           &trans  &trans  &trans  &trans       &trans
+&trans   &trans     &trans     &trans     &trans                &trans     &trans    &trans  &trans             &trans     &trans     &trans    &trans     &trans
+            >;
+            sensor-bindings = <&inc_dec_kp TAB LS(TAB)>;
         };
 
         lower_layer {
             display-name = "Lower Layer";
-
             bindings = <
 &trans   &trans     &trans     &trans     &trans     &trans                                       &trans           &trans  &trans  &trans  &trans       &trans
 &kp ESC  &kp N1     &kp N2     &kp N3     &kp N4     &kp N5     &trans                    &trans  &kp N6           &kp N7  &kp N8  &kp N9  &kp N0       &kp DEL
@@ -54,7 +84,6 @@
 
         raise_layer {
             display-name = "Raise Layer";
-
             bindings = <
 &trans   &trans     &trans    &trans    &trans    &trans                                       &trans     &trans     &trans     &trans    &trans     &trans
 &kp ESC  &kp EXCL   &kp AT    &kp HASH  &kp DLLR  &kp PRCNT  &trans                    &trans  &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR   &kp DEL
@@ -66,7 +95,6 @@
 
         adjust_layer {
             display-name = "Adjust Layer";
-
             bindings = <
 &kp F1  &kp F2        &kp F3        &kp F4        &kp F5            &kp F6                                                   &kp F7        &kp F8        &kp F9        &kp F10       &kp F11       &kp F12
 &trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3      &bt BT_SEL 4  &bootloader                    &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &out OUT_TOG
