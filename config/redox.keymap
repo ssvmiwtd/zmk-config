@@ -11,13 +11,15 @@
 
 / {
     behaviors {
-        // Кастомное поведение для энкодера: громкость или переключение вкладок
-        enc_mode_toggle: enc_mode_toggle {
-            compatible = "zmk,behavior-toggle-layer";
-            label = "ENC_MODE_TOGGLE";
-            #binding-cells = <0>;
-            bindings = <&mo 4>, <&kp LALT>;
-            toggle-layer = <4>;
+        // Исправлено: Используем поведение momentary-layer вместо toggle-layer
+        enc_mode_hold: enc_mode_hold {
+            compatible = "zmk,behavior-hold-tap";
+            label = "ENC_MODE_HOLD";
+            #binding-cells = <2>;
+            flavor = "hold-on-tap";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <0>;
+            bindings = <&mo>, <&kp LALT>;
         };
     };
 
@@ -39,7 +41,7 @@
         encoder_button: encoder_button {
             label = "ENCODER_BUTTON";
             gpios = <&gpio1 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-            bindings = <&enc_mode_toggle>;
+            bindings = <&enc_mode_hold 4 1>; // Удерживать для слоя 4, тап для Alt
         };
     };
 
