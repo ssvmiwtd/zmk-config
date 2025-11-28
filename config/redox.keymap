@@ -1,8 +1,13 @@
+/*
+ * Copyright (c) 2021 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
-#include <dt-bindings/zmk/encoders.h>
 
 / {
     sensors {
@@ -16,11 +21,6 @@
         b-gpios = <&gpio1 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;  // P1.02
         steps = <24>;
         status = "okay";
-    };
-
-    // Кнопка энкодера
-    encoder_btn: encoder_btn {
-        compatible = "zmk,keymap-sensors";
     };
 
     keymap {
@@ -42,6 +42,7 @@
 
         lower_layer {
             display-name = "Lower Layer";
+
             bindings = <
 &trans   &trans     &trans     &trans     &trans     &trans                                       &trans           &trans  &trans  &trans  &trans       &trans
 &kp ESC  &kp N1     &kp N2     &kp N3     &kp N4     &kp N5     &trans                    &trans  &kp N6           &kp N7  &kp N8  &kp N9  &kp N0       &kp DEL
@@ -53,6 +54,7 @@
 
         raise_layer {
             display-name = "Raise Layer";
+
             bindings = <
 &trans   &trans     &trans    &trans    &trans    &trans                                       &trans     &trans     &trans     &trans    &trans     &trans
 &kp ESC  &kp EXCL   &kp AT    &kp HASH  &kp DLLR  &kp PRCNT  &trans                    &trans  &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR   &kp DEL
@@ -64,6 +66,7 @@
 
         adjust_layer {
             display-name = "Adjust Layer";
+
             bindings = <
 &kp F1  &kp F2        &kp F3        &kp F4        &kp F5            &kp F6                                                   &kp F7        &kp F8        &kp F9        &kp F10       &kp F11       &kp F12
 &trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3      &bt BT_SEL 4  &bootloader                    &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &out OUT_TOG
@@ -73,4 +76,4 @@
             >;
         };
     };
-};  // <-- Добавь эту закрывающую скобку!
+};
