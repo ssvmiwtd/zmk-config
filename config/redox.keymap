@@ -23,6 +23,24 @@
         status = "okay";
     };
 
+
+
+
+
+    gpio_keys {
+        compatible = "gpio-keys";
+
+        enc_btn: enc_btn {
+            label = "ENC_BTN";
+            gpios = <&gpio1 7 GPIO_ACTIVE_LOW>;   // кнопка энкодера
+        };
+    };
+
+
+
+
+
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -38,6 +56,10 @@
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+
+                &enc_btn {
+                    bindings = <&kp ENTER>;
+                };
 
         };
 
@@ -81,5 +103,7 @@
         };
     };
 };
+
+
 
 
