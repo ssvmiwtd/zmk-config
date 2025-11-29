@@ -19,7 +19,7 @@
         compatible = "alps,ec11";
         a-gpios = <&gpio1 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;  // P1.01
         b-gpios = <&gpio1 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;  // P1.02
-        steps = <76>;
+        steps = <74>;
         status = "okay";
     };
 
@@ -37,7 +37,7 @@
 &kp LCTRL  &mo 2   &kp LALT  &kp LEFT_GUI  &mo 1           &kp SPACE  &kp RALT         &kp DEL   &kp SPACE          &mo 2   &kp LEFT   &kp DOWN  &kp UP    &kp RIGHT
             >;
 
-            sensor-bindings = <&inc_dec_kp N1 N2>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 
         };
 
@@ -52,7 +52,8 @@
 &trans   &mo 3      &trans     &trans     &trans                &trans  &trans    &trans  &kp N0                   &mo 3   &trans  &trans  &trans       &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp TAB LS(TAB)>;
+           sensor-bindings = <&inc_dec_kp LALT(TAB) LS(LALT(TAB))>;
+
         };
 
         raise_layer {
