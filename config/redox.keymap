@@ -52,7 +52,7 @@
 &trans   &mo 3      &trans     &trans     &trans                &trans  &trans    &trans  &kp N0                   &mo 3   &trans  &trans  &trans       &trans
             >;
 
-           sensor-bindings = <&inc_dec_kp LALT(TAB) LS(LALT(TAB))>;
+           sensor-bindings = <&inc_dec_kp TAB LS(TAB)>;
 
         };
 
