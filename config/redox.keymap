@@ -20,7 +20,6 @@
         a-gpios = <&gpio1 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;  // P1.01
         b-gpios = <&gpio1 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;  // P1.02
         steps = <80>;
-        resolution = 2
         status = "okay";
     };
 
