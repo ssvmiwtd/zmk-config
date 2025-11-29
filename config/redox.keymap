@@ -10,21 +10,6 @@
 #include <dt-bindings/zmk/outputs.h>
 
 / {
-    sensors {
-        compatible = "zmk,keymap-sensors";
-        sensors = <&left_encoder>;
-    };
-
-    left_encoder: encoder_left {
-        compatible = "alps,ec11";
-        a-gpios = <&gpio1 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;  // P1.01
-        b-gpios = <&gpio1 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;  // P1.02
-        steps = <74>;
-        status = "okay";
-    };
-
-    
-
     keymap {
         compatible = "zmk,keymap";
 
@@ -40,8 +25,7 @@
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
-            
-      
+            bindings-post = <&enc_btn &kp C_PLAY_PAUSE>;
         };
 
         lower_layer {
@@ -56,8 +40,7 @@
             >;
 
             sensor-bindings = <&inc_dec_kp TAB LS(TAB)>;
-
-
+            bindings-post = <&enc_btn &kp C_PLAY_PAUSE>;
         };
 
         raise_layer {
@@ -71,7 +54,7 @@
 &trans   &trans    &trans    &mo 3     &trans              &mo 3   &trans    &trans    &trans             &trans     &trans     &trans    &trans     &trans
             >;
 
-     
+            bindings-post = <&enc_btn &kp C_PLAY_PAUSE>;
         };
 
         adjust_layer {
@@ -85,7 +68,7 @@
 &trans  &trans        &trans        &trans        &trans                        &trans        &trans      &trans                      &trans        &trans        &trans        &trans        &trans
             >;
 
-        
+            bindings-post = <&enc_btn &kp C_PLAY_PAUSE>;
         };
     };
 };
