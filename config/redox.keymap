@@ -23,23 +23,16 @@
         status = "okay";
     };
 
-
-
-
-
+    // КНОПКА ЭНКОДЕРА
     gpio_keys {
         compatible = "gpio-keys";
 
         enc_btn: enc_btn {
             label = "ENC_BTN";
-            gpios = <&gpio1 7 GPIO_ACTIVE_LOW>;   // кнопка энкодера
+            gpios = <&gpio1 3 GPIO_ACTIVE_LOW>;   // ПИН КНОПКИ
+            zmk,binding-cells = <0>;
         };
     };
-
-
-
-
-
 
     keymap {
         compatible = "zmk,keymap";
@@ -56,54 +49,53 @@
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
-
-                &enc_btn {
-                    bindings = <&kp ENTER>;
-                };
-
+            
+            // Кнопка энкодера на этом слое
+            bindings-post = <&enc_btn &kp C_PLAY_PAUSE>;
         };
 
         lower_layer {
             display-name = "Lower Layer";
 
             bindings = <
-&trans   &trans     &trans     &trans     &trans     &trans                                       &trans           &trans  &trans  &trans  &trans       &trans
-&kp ESC  &kp N1     &kp N2     &kp N3     &kp N4     &kp N5     &trans                    &trans  &kp N6           &kp N7  &kp N8  &kp N9  &kp N0       &kp DEL
-&trans   &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT   &kp BSLH   &trans                    &trans  &kp KP_MULTIPLY  &kp N4  &kp N5  &kp N6  &kp KP_PLUS  &kp KP_MINUS
-&trans   &kp ESC    &kp LGUI   &kp LG(C)  &kp LG(V)  &kp GRAVE  &trans  &trans    &trans  &trans  &kp KP_DIVIDE    &kp N1  &kp N2  &kp N3  &kp RET      &kp RET
-&trans   &mo 3      &trans     &trans     &trans                &trans  &trans    &trans  &kp N0                   &mo 3   &trans  &trans  &trans       &trans
+&trans   &trans     &trans     &trans     &trans     &trans                                     &trans           &trans  &trans  &trans  &trans       &trans
+&kp ESC  &kp N1     &kp N2     &kp N3     &kp N4     &kp N5   &trans                    &trans  &kp N6           &kp N7  &kp N8  &kp N9  &kp N0       &kp DEL
+&trans   &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT   &kp BSLH &trans                    &trans  &kp KP_MULTIPLY  &kp N4  &kp N5  &kp N6  &kp KP_PLUS  &kp KP_MINUS
+&trans   &kp ESC    &kp LGUI   &kp LG(C)  &kp LG(V)  &kp GRAVE &trans &trans    &trans  &trans &kp KP_DIVIDE    &kp N1  &kp N2  &kp N3  &kp RET      &kp RET
+&trans   &mo 3      &trans     &trans     &trans              &trans  &trans    &trans  &kp N0                   &mo 3   &trans  &trans  &trans       &trans
             >;
 
-           sensor-bindings = <&inc_dec_kp TAB LS(TAB)>;
+            sensor-bindings = <&inc_dec_kp TAB LS(TAB)>;
 
+            bindings-post = <&enc_btn &kp C_PLAY_PAUSE>;
         };
 
         raise_layer {
             display-name = "Raise Layer";
 
             bindings = <
-&trans   &trans     &trans    &trans    &trans    &trans                                       &trans     &trans     &trans     &trans    &trans     &trans
-&kp ESC  &kp EXCL   &kp AT    &kp HASH  &kp DLLR  &kp PRCNT  &trans                    &trans  &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR   &kp DEL
-&trans   &kp UNDER  &kp PLUS  &kp LBRC  &kp RBRC  &kp PIPE   &trans                    &trans  &kp HOME   &kp PG_UP  &kp PSCRN  &kp UP    &kp GRAVE  &kp TILDE
-&trans   &kp ESC    &kp LGUI  &kp LPAR  &kp RPAR  &kp TILDE  &trans  &trans    &trans  &trans  &kp END    &kp PG_DN  &kp LEFT   &kp DOWN  &kp RIGHT  &kp RET
-&trans   &trans     &trans    &mo 3     &trans               &mo 3   &trans    &trans  &trans             &trans     &trans     &trans    &trans     &trans
+&trans   &trans    &trans    &trans    &trans    &trans                                        &trans     &trans     &trans     &trans    &trans     &trans
+&kp ESC  &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT  &trans                     &trans  &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR   &kp DEL
+&trans   &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC  &kp PIPE   &trans                     &trans  &kp HOME   &kp PG_UP  &kp PSCRN  &kp UP    &kp GRAVE  &kp TILDE
+&trans   &kp ESC   &kp LGUI  &kp LPAR  &kp RPAR  &kp TILDE  &trans &trans    &trans    &trans  &kp END    &kp PG_DN  &kp LEFT   &kp DOWN  &kp RIGHT  &kp RET
+&trans   &trans    &trans    &mo 3     &trans              &mo 3   &trans    &trans    &trans             &trans     &trans     &trans    &trans     &trans
             >;
+
+            bindings-post = <&enc_btn &kp C_PLAY_PAUSE>;
         };
 
         adjust_layer {
             display-name = "Adjust Layer";
 
             bindings = <
-&kp F1  &kp F2        &kp F3        &kp F4        &kp F5            &kp F6                                                   &kp F7        &kp F8        &kp F9        &kp F10       &kp F11       &kp F12
-&trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3      &bt BT_SEL 4  &bootloader                    &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &out OUT_TOG
-&trans  &kp K_MUTE    &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PLAY_PAUSE  &none         &sys_reset                     &trans      &kp F1        &kp F2        &kp F3        &kp F4        &kp F5        &kp F6
-&trans  &kp PSCRN     &kp PSCRN     &kp CAPS      &none             &none         &trans       &trans    &trans  &trans      &kp F7        &kp F8        &kp F9        &kp F10       &kp F11       &kp F12
-&trans  &trans        &trans        &trans        &trans                          &trans       &trans    &trans  &trans                    &trans        &trans        &trans        &trans        &trans
+&kp F1  &kp F2        &kp F3        &kp F4        &kp F5        &kp F6                                                &kp F7        &kp F8        &kp F9        &kp F10       &kp F11       &kp F12
+&trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bootloader               &bt BT_CLR     &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &out OUT_TOG
+&trans  &kp K_MUTE    &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PLAY_PAUSE  &none     &sys_reset                &trans          &kp F1        &kp F2        &kp F3        &kp F4        &kp F5        &kp F6
+&trans  &kp PSCRN     &kp PSCRN     &kp CAPS      &none             &none     &trans        &trans      &trans          &kp F7        &kp F8        &kp F9        &kp F10       &kp F11       &kp F12
+&trans  &trans        &trans        &trans        &trans                        &trans        &trans      &trans                      &trans        &trans        &trans        &trans        &trans
             >;
+
+            bindings-post = <&enc_btn &kp C_PLAY_PAUSE>;
         };
     };
 };
-
-
-
-
