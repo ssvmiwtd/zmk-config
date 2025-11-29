@@ -51,10 +51,10 @@
         status = "okay";
     };
 
-    /* Кнопка энкодера */
+    /* Кнопка энкодера на P1.07 */
     left_encoder_sw: encoder_left_button {
         compatible = "zmk,key";
-        gpios = <&gpio1 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;  // P1.03
+        gpios = <&gpio1 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;  // P1.07
         label = "LEFT_ENCODER_SW";
     };
 
@@ -78,8 +78,7 @@
 &kp CAPS   &kp A   &kp S     &kp D         &kp F   &kp G   &kp LBKT                              &kp RBKT   &kp H   &kp J   &kp K      &kp L     &kp SEMI  &kp SQT
 &kp LSHFT  &kp Z   &kp X     &kp C         &kp V   &kp B   &kp ENTER  &kp BACKSPACE    &kp HOME  &kp END    &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &mt RSHFT RET
 
-/* КНОПКА ЭНКОДЕРА — ставим здесь */
-&kp LCTRL  &mo 2   &kp LALT  &kp LEFT_GUI  &mo 1   &kp LEFT_ENCODER_SW   &kp SPACE   &kp RALT  &kp DEL   &kp SPACE   &mo 2   &kp LEFT   &kp DOWN  &kp UP    &kp RIGHT
+&kp LCTRL  &mo 2   &kp LALT  &kp LEFT_GUI  &mo 1   &left_encoder_sw   &kp SPACE   &kp RALT  &kp DEL   &kp SPACE   &mo 2   &kp LEFT   &kp DOWN  &kp UP    &kp RIGHT
             >;
 
             sensor-bindings = <&encoder_default>;
@@ -97,7 +96,7 @@
 &kp ESC  &kp N1     &kp N2     &kp N3     &kp N4     &kp N5     &trans                    &trans  &kp N6           &kp N7  &kp N8  &kp N9  &kp N0       &kp DEL
 &trans   &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT   &kp BSLH   &trans                    &trans  &kp KP_MULTIPLY  &kp N4  &kp N5  &kp N6  &kp KP_PLUS  &kp KP_MINUS
 &trans   &kp ESC    &kp LGUI   &kp LG(C)  &kp LG(V)  &kp GRAVE  &trans  &trans    &trans  &trans  &kp KP_DIVIDE    &kp N1  &kp N2  &kp N3  &kp RET      &kp RET
-&trans   &mo 3      &trans     &trans     &trans               &kp LEFT_ENCODER_SW  &trans  &trans  &kp N0                    &mo 3   &trans  &trans  &trans       &trans
+&trans   &mo 3      &trans     &trans     &trans               &left_encoder_sw  &trans  &trans  &kp N0                    &mo 3   &trans  &trans  &trans       &trans
             >;
 
             sensor-bindings = <&encoder_lower>;
@@ -115,7 +114,7 @@
 &kp ESC  &kp EXCL   &kp AT    &kp HASH  &kp DLLR  &kp PRCNT  &trans                    &trans  &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR   &kp DEL
 &trans   &kp UNDER  &kp PLUS  &kp LBRC  &kp RBRC  &kp PIPE   &trans                    &trans  &kp HOME   &kp PG_UP  &kp PSCRN  &kp UP    &kp GRAVE  &kp TILDE
 &trans   &kp ESC    &kp LGUI  &kp LPAR  &kp RPAR  &kp TILDE  &trans  &trans    &trans  &trans  &kp END    &kp PG_DN  &kp LEFT   &kp DOWN  &kp RIGHT  &kp RET
-&trans   &trans     &trans    &mo 3     &trans               &kp LEFT_ENCODER_SW  &trans  &trans  &trans             &trans     &trans     &trans    &trans     &trans
+&trans   &trans     &trans    &mo 3     &trans               &left_encoder_sw  &trans  &trans  &trans             &trans     &trans     &trans    &trans     &trans
             >;
 
             sensor-bindings = <&encoder_raise>;
