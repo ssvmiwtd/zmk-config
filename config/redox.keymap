@@ -10,6 +10,34 @@
 #include <dt-bindings/zmk/outputs.h>
 
 / {
+    /* ------------------------- */
+    /*      BEHAVIOR ENCODER     */
+    /* ------------------------- */
+
+    behaviors {
+        encoder_default: encoder_default {
+            compatible = "zmk,behavior-encoder";
+            label = "ENC_DEFAULT";
+            bindings = <&kp C_VOL_UP>, <&kp C_VOL_DN>;
+        };
+
+        encoder_lower: encoder_lower {
+            compatible = "zmk,behavior-encoder";
+            label = "ENC_LOWER";
+            bindings = <&kp PG_UP>, <&kp PG_DN>;
+        };
+
+        encoder_raise: encoder_raise {
+            compatible = "zmk,behavior-encoder";
+            label = "ENC_RAISE";
+            bindings = <&kp RIGHT>, <&kp LEFT>;
+        };
+    };
+
+    /* ------------------------- */
+    /*       ENCODER + SW        */
+    /* ------------------------- */
+
     sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder>;
@@ -23,8 +51,23 @@
         status = "okay";
     };
 
+    /* Кнопка энкодера */
+    left_encoder_sw: encoder_left_button {
+        compatible = "zmk,key";
+        gpios = <&gpio1 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;  // P1.03
+        label = "LEFT_ENCODER_SW";
+    };
+
+    /* ------------------------- */
+    /*         KEYMAP            */
+    /* ------------------------- */
+
     keymap {
         compatible = "zmk,keymap";
+
+        /* =======================
+         *     DEFAULT LAYER
+         * ======================= */
 
         default_layer {
             display-name = "Default Layer";
@@ -34,11 +77,17 @@
 &kp TAB    &kp Q   &kp W     &kp E         &kp R   &kp T   &kp LPAR                              &kp RPAR   &kp Y   &kp U   &kp I      &kp O     &kp P     &kp MINUS
 &kp CAPS   &kp A   &kp S     &kp D         &kp F   &kp G   &kp LBKT                              &kp RBKT   &kp H   &kp J   &kp K      &kp L     &kp SEMI  &kp SQT
 &kp LSHFT  &kp Z   &kp X     &kp C         &kp V   &kp B   &kp ENTER  &kp BACKSPACE    &kp HOME  &kp END    &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &mt RSHFT RET
-&kp LCTRL  &mo 2   &kp LALT  &kp LEFT_GUI  &mo 1           &kp SPACE  &kp RALT         &kp DEL   &kp SPACE          &mo 2   &kp LEFT   &kp DOWN  &kp UP    &kp RIGHT
+
+/* КНОПКА ЭНКОДЕРА — ставим здесь */
+&kp LCTRL  &mo 2   &kp LALT  &kp LEFT_GUI  &mo 1   &kp LEFT_ENCODER_SW   &kp SPACE   &kp RALT  &kp DEL   &kp SPACE   &mo 2   &kp LEFT   &kp DOWN  &kp UP    &kp RIGHT
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&encoder_default>;
         };
+
+        /* =======================
+         *        LOWER
+         * ======================= */
 
         lower_layer {
             display-name = "Lower Layer";
@@ -48,9 +97,15 @@
 &kp ESC  &kp N1     &kp N2     &kp N3     &kp N4     &kp N5     &trans                    &trans  &kp N6           &kp N7  &kp N8  &kp N9  &kp N0       &kp DEL
 &trans   &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT   &kp BSLH   &trans                    &trans  &kp KP_MULTIPLY  &kp N4  &kp N5  &kp N6  &kp KP_PLUS  &kp KP_MINUS
 &trans   &kp ESC    &kp LGUI   &kp LG(C)  &kp LG(V)  &kp GRAVE  &trans  &trans    &trans  &trans  &kp KP_DIVIDE    &kp N1  &kp N2  &kp N3  &kp RET      &kp RET
-&trans   &mo 3      &trans     &trans     &trans                &trans  &trans    &trans  &kp N0                   &mo 3   &trans  &trans  &trans       &trans
+&trans   &mo 3      &trans     &trans     &trans               &kp LEFT_ENCODER_SW  &trans  &trans  &kp N0                    &mo 3   &trans  &trans  &trans       &trans
             >;
+
+            sensor-bindings = <&encoder_lower>;
         };
+
+        /* =======================
+         *        RAISE
+         * ======================= */
 
         raise_layer {
             display-name = "Raise Layer";
@@ -60,9 +115,15 @@
 &kp ESC  &kp EXCL   &kp AT    &kp HASH  &kp DLLR  &kp PRCNT  &trans                    &trans  &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR   &kp DEL
 &trans   &kp UNDER  &kp PLUS  &kp LBRC  &kp RBRC  &kp PIPE   &trans                    &trans  &kp HOME   &kp PG_UP  &kp PSCRN  &kp UP    &kp GRAVE  &kp TILDE
 &trans   &kp ESC    &kp LGUI  &kp LPAR  &kp RPAR  &kp TILDE  &trans  &trans    &trans  &trans  &kp END    &kp PG_DN  &kp LEFT   &kp DOWN  &kp RIGHT  &kp RET
-&trans   &trans     &trans    &mo 3     &trans               &mo 3   &trans    &trans  &trans             &trans     &trans     &trans    &trans     &trans
+&trans   &trans     &trans    &mo 3     &trans               &kp LEFT_ENCODER_SW  &trans  &trans  &trans             &trans     &trans     &trans    &trans     &trans
             >;
+
+            sensor-bindings = <&encoder_raise>;
         };
+
+        /* =======================
+         *        ADJUST
+         * ======================= */
 
         adjust_layer {
             display-name = "Adjust Layer";
