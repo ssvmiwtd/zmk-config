@@ -23,16 +23,7 @@
         status = "okay";
     };
 
-    // КНОПКА ЭНКОДЕРА
-    gpio_keys {
-        compatible = "gpio-keys";
-
-        enc_btn: enc_btn {
-            label = "ENC_BTN";
-            gpios = <&gpio1 3 GPIO_ACTIVE_LOW>;   // ПИН КНОПКИ
-            zmk,binding-cells = <0>;
-        };
-    };
+    
 
     keymap {
         compatible = "zmk,keymap";
@@ -50,8 +41,7 @@
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
             
-            // Кнопка энкодера на этом слое
-            bindings-post = <&enc_btn &kp C_PLAY_PAUSE>;
+      
         };
 
         lower_layer {
@@ -67,7 +57,7 @@
 
             sensor-bindings = <&inc_dec_kp TAB LS(TAB)>;
 
-            bindings-post = <&enc_btn &kp C_PLAY_PAUSE>;
+
         };
 
         raise_layer {
@@ -81,7 +71,7 @@
 &trans   &trans    &trans    &mo 3     &trans              &mo 3   &trans    &trans    &trans             &trans     &trans     &trans    &trans     &trans
             >;
 
-            bindings-post = <&enc_btn &kp C_PLAY_PAUSE>;
+     
         };
 
         adjust_layer {
@@ -95,7 +85,7 @@
 &trans  &trans        &trans        &trans        &trans                        &trans        &trans      &trans                      &trans        &trans        &trans        &trans        &trans
             >;
 
-            bindings-post = <&enc_btn &kp C_PLAY_PAUSE>;
+        
         };
     };
 };
