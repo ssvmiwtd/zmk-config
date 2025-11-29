@@ -50,6 +50,8 @@
 &trans   &kp ESC    &kp LGUI   &kp LG(C)  &kp LG(V)  &kp GRAVE  &trans  &trans    &trans  &trans  &kp KP_DIVIDE    &kp N1  &kp N2  &kp N3  &kp RET      &kp RET
 &trans   &mo 3      &trans     &trans     &trans                &trans  &trans    &trans  &kp N0                   &mo 3   &trans  &trans  &trans       &trans
             >;
+
+            sensor-bindings = <&inc_dec_kp PAGE_UP PAGE_DOWN>;
         };
 
         raise_layer {
