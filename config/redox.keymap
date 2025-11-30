@@ -1,7 +1,7 @@
-
-
 /*
- * ZMK Redox keymap with encoder and LED indicators
+ * Copyright (c) 2021 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #include <behaviors.dtsi>
@@ -10,7 +10,8 @@
 #include <dt-bindings/zmk/outputs.h>
 
 / {
-    sensors {
+
+  sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder>;
     };
@@ -19,38 +20,18 @@
         compatible = "alps,ec11";
         a-gpios = <&gpio1 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&gpio1 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        steps = <74>;
+
+        steps = <74>;           // твой шаговый фикс
         status = "okay";
     };
 
-    leds {
-        compatible = "gpio-leds";
 
-        caps_led: caps_led {
-            gpios = <&gpio0 17 GPIO_ACTIVE_HIGH>;
-            label = "CAPS_LED";
-        };
-
-        layer1_led: layer1_led {
-            gpios = <&gpio0 20 GPIO_ACTIVE_HIGH>;
-            label = "LAYER1_LED";
-        };
-
-        layer2_led: layer2_led {
-            gpios = <&gpio0 24 GPIO_ACTIVE_HIGH>;
-            label = "LAYER2_LED";
-        };
-    };
 
     keymap {
         compatible = "zmk,keymap";
 
-        output-leds = <&caps_led CAPS_LOCK>;
-
         default_layer {
             display-name = "Default Layer";
-
-            led-indicators = <>;
 
             bindings = <
 &kp ESC    &kp N1  &kp N2    &kp N3        &kp N4  &kp N5                                                   &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp BSPC
@@ -66,8 +47,6 @@
         lower_layer {
             display-name = "Lower Layer";
 
-            led-indicators = <&layer1_led 1>;
-
             bindings = <
 &trans   &trans     &trans     &trans     &trans     &trans                                     &trans           &trans  &trans  &trans  &trans       &trans
 &kp ESC  &kp N1     &kp N2     &kp N3     &kp N4     &kp N5   &trans                    &trans  &kp N6           &kp N7  &kp N8  &kp N9  &kp N0       &kp DEL
@@ -82,8 +61,6 @@
         raise_layer {
             display-name = "Raise Layer";
 
-            led-indicators = <&layer2_led 1>;
-
             bindings = <
 &trans   &trans    &trans    &trans    &trans    &trans                                        &trans     &trans     &trans     &trans    &trans     &trans
 &kp ESC  &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT  &trans                     &trans  &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR   &kp DEL
@@ -91,12 +68,11 @@
 &trans   &kp ESC   &kp LGUI  &kp LPAR  &kp RPAR  &kp TILDE  &trans &trans    &trans    &trans  &kp END    &kp PG_DN  &kp LEFT   &kp DOWN  &kp RIGHT  &kp RET
 &trans   &trans    &trans    &mo 3     &trans              &mo 3   &trans    &trans    &trans             &trans     &trans     &trans    &trans     &trans
             >;
+
         };
 
         adjust_layer {
             display-name = "Adjust Layer";
-
-            led-indicators = <&layer1_led 1 &layer2_led 1>;
 
             bindings = <
 &kp F1  &kp F2        &kp F3        &kp F4        &kp F5        &kp F6                                                &kp F7        &kp F8        &kp F9        &kp F10       &kp F11       &kp F12
@@ -105,6 +81,7 @@
 &trans  &kp PSCRN     &kp PSCRN     &kp CAPS      &none             &none     &trans        &trans      &trans          &kp F7        &kp F8        &kp F9        &kp F10       &kp F11       &kp F12
 &trans  &trans        &trans        &trans        &trans                        &trans        &trans      &trans                      &trans        &trans        &trans        &trans        &trans
             >;
+
         };
     };
 };
