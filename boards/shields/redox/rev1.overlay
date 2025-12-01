@@ -3,18 +3,18 @@
         compatible = "gpio-leds";
 
         led_caps: led_caps {
-            gpios = <&gpio0 17 GPIO_ACTIVE_HIGH>;
-            label = "led_caps";
-        };
-
-        led_lower: led_lower {
             gpios = <&gpio0 20 GPIO_ACTIVE_HIGH>;
-            label = "led_lower";
+            label = "CAPS_LED";
         };
 
-        led_raise: led_raise {
+        led_layer_1: led_layer_1 {
             gpios = <&gpio0 24 GPIO_ACTIVE_HIGH>;
-            label = "led_raise";
+            label = "LAYER_LED_1";
+        };
+
+        led_layer_2: led_layer_2 {
+            gpios = <&gpio0 17 GPIO_ACTIVE_HIGH>;
+            label = "LAYER_LED_2";
         };
     };
 };
