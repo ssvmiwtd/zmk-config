@@ -5,8 +5,8 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: zmkcommunity
-      url-base: https://github.com
+    - name: awkannan
+      url-base: https://github.com/awkannan
 
   projects:
     - name: zmk
@@ -14,10 +14,10 @@ manifest:
       import: app/west.yml
 
     - name: zmk-gpio-behavior
-      remote: zmkcommunity
-      revision: v0.1.0
+      remote: awkannan
+      revision: main
       path: modules/zmk-gpio-behavior
-      repo-path: zmkcommunity/zmk-gpio-behavior
+      repo-path: zmk-gpio-behavior
 
   self:
     path: config
