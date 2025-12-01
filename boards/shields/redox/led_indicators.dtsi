@@ -1,0 +1,9 @@
+/ {
+    zmk,led-indicators {
+        compatible = "zmk,led-indicators";
+
+        capslock = <&led_caps>;
+        layer = <&led_layer>;
+        custom = <&led_custom>;
+    };
+};
