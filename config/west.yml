@@ -12,3 +12,15 @@ manifest:
       import: app/west.yml
   self:
     path: config
+
+
+
+  projects:
+    - name: zmk
+      remote: zmkfirmware
+      import: app/west.yml
+
+    - name: zmk-gpio-behavior
+      remote: zmkfirmware
+      revision: main
+      url: https://github.com/awkannan/zmk-gpio-behavior
