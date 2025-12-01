@@ -1,9 +1,21 @@
 / {
-    zmk,led-indicators {
+    zmk-led-indicators {
         compatible = "zmk,led-indicators";
 
         capslock = <&led_caps>;
-        layer = <&led_layer>;
-        custom = <&led_custom>;
+
+        layer-indicators = <
+            &led_layer_1 0  // Layer 0: OFF
+            &led_layer_2 0
+
+            &led_layer_1 1  // Layer 1: LED2 ON, LED3 OFF
+            &led_layer_2 0
+
+            &led_layer_1 0  // Layer 2: LED2 OFF, LED3 ON
+            &led_layer_2 1
+
+            &led_layer_1 1  // Layer 3: LED2 ON, LED3 ON
+            &led_layer_2 1
+        >;
     };
 };
