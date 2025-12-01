@@ -15,10 +15,7 @@ manifest:
 
 
 
-  projects:
-    - name: zmk
-      remote: zmkfirmware
-      import: app/west.yml
+
 
     - name: zmk-gpio-behavior
       remote: zmkfirmware
