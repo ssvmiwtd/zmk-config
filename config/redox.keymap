@@ -11,6 +11,9 @@
 
 / {
 
+
+/*
+
   sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder>;
@@ -25,6 +28,7 @@
         status = "okay";
     };
 
+ */
 
 
     keymap {
