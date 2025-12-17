@@ -8,6 +8,8 @@
         steps = <20>;
     };
 
+каэээс
+
     encoder0_btn: encoder_button {
         compatible = "gpio-keys";
         label = "ENCODER_LEFT_BTN";
