@@ -1,1 +1,5 @@
-ЫФВАВВЫФАФЫВ
+config SHIELD_REDOX_LEFT
+    def_bool $(shields_list_contains,redox_left)
+
+config SHIELD_REDOX_RIGHT
+    def_bool $(shields_list_contains,redox_right)
