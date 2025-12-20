@@ -1,0 +1,21 @@
+
+/ {
+    sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&left_encoder>;
+    };
+
+    left_encoder: encoder_left {
+        compatible = "alps,ec11";
+        a-gpios = <&gpio1 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&gpio1 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <74>;
+        status = "okay";
+    };
+
+    left_encoder_btn: encoder_btn_left {
+        compatible = "zmk,gpio-key";
+        gpios = <&gpio1 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        label = "ENC_BTN_LEFT";
+    };
+};
