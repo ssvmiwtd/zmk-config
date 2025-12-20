@@ -33,13 +33,6 @@
         status = "okay";
     };
 
-    encoder_btn_left: encoder_btn_left {
-        compatible = "zmk,gpio-key";
-        gpios = <&gpio1 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        label = "ENC_BTN_LEFT";
-    };
-};
-
     keymap {
         compatible = "zmk,keymap";
 
@@ -56,7 +49,7 @@
 
               sensor-bindings = <
         &inc_dec_kp C_VOL_UP C_VOL_DN   // левый энкодер
-        &inc_dec_kp R     L     // правый энкодер
+        &inc_dec_kp R     &none     // правый энкодер
     >;
 
         };
