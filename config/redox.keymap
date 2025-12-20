@@ -49,7 +49,7 @@
 
               sensor-bindings = <
         &inc_dec_kp C_VOL_UP C_VOL_DN   // левый энкодер
-        &inc_dec_kp G     &none     // правый энкодер
+        &inc_dec_kp G     &trans     // правый энкодер
     >;
 
         };
