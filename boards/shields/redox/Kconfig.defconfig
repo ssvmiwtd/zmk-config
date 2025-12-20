@@ -1,1 +1,4 @@
-
+if SHIELD_REDOX_LEFT
+config ZMK_SPLIT
+    default "redox_left"
+endif
