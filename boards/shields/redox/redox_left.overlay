@@ -1,4 +1,4 @@
-
+авпавпав
 / {
     encoder0: encoder {
         compatible = "zmk,ec11";
@@ -10,9 +10,10 @@
 
 каэээс
 
-    encoder0_btn: encoder_button {
-        compatible = "gpio-keys";
+    encoder0_btn: encoder_button ываывфавыфаы{
+        compaыыыыыыыыыыыыыыыыыыtible = "gpio-keys";
         label = "ENCODER_LEFT_BTN";
         gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
     };
 };
+авыфпфыа
