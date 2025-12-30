@@ -35,14 +35,14 @@
         rus: language {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LA(LSHFT) &sl 1>;
+            bindings = <&kp LA(LSHFT) &to 1>;
             label = "LANGUAGE";
         };
 
         eng: eng {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LA(LSHFT) &sl 0>;
+            bindings = <&kp LA(LSHFT) &to 0>;
             label = "ENG";
         };
     };
