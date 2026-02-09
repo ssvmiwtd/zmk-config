@@ -53,7 +53,7 @@
         layer_eng {
             display-name = "Default Layer";
             bindings = <
-&kp ESC    &kp N1  &kp N2    &kp N3        &kp N4  &kp N5                                                       &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &rus
+&kp ESC    &kp N1  &kp N2    &kp N3        &kp N4  &kp N5                                                       &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &to 5
 &kp TAB    &kp Q   &kp W     &kp E         &kp R   &kp T   &kp LPAR                              &kp RPAR       &kp Y   &kp U   &kp I      &kp O     &kp P     &rus
 &kp CAPS   &kp A   &kp S     &kp D         &kp F   &kp G   &kp LBKT                              &kp RBKT       &kp H   &kp J   &kp K      &kp L     &kp SEMI  &kp SQT
 &kp LSHFT  &kp Z   &kp X     &kp C         &kp V   &kp B   &kp ENTER  &kp BACKSPACE    &kp HOME  &kp END        &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &mt RSHFT RET
@@ -69,7 +69,7 @@
         layer_rus {
             display-name = "Default Layer";
             bindings = <
-&kp ESC    &kp N1  &kp N2    &kp N3        &kp N4  &kp N5                                                       &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &eng
+&kp ESC    &kp N1  &kp N2    &kp N3        &kp N4  &kp N5                                                       &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &to 5
 &kp TAB    &kp Q   &kp W     &kp E         &kp R   &kp T   &kp LPAR                              &kp SLASH      &kp Y   &kp U   &kp I      &kp O     &kp P     &eng
 &kp CAPS   &kp A   &kp S     &kp D         &kp F   &kp G   &kp LBKT                              &kp LS(SLASH)  &kp H   &kp J   &kp K      &kp L     &kp SEMI  &kp SQT
 &kp LSHFT  &kp Z   &kp X     &kp C         &kp V   &kp B   &kp ENTER  &kp BACKSPACE    &kp HOME  &kp END        &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &mt RSHFT RET
@@ -119,11 +119,11 @@
 
         gaming {
             bindings = <
-&kp ESC    &kp N1  &kp N2    &kp N3    &kp N4  &kp N5                                             &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &to 0
-&kp TAB    &kp T   &kp Q     &kp W     &kp E   &kp R   &kp LBKT                         &kp RBKT  &kp Y   &kp U   &kp I      &kp O     &kp P     &none
-&kp RALT   &kp G   &kp A     &kp S     &kp D   &kp F   &kp RBKT                         &kp LBKT  &kp H   &kp J   &kp K      &kp L     &kp SEMI  &kp APOS
-&kp LSHFT  &kp B   &kp Z     &kp X     &kp C   &kp V   &kp DOT    &kp COMMA    &kp F11  &kp F12   &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &none
-&kp LCTRL  &kp F5  &kp LALT  &kp LGUI  &mo 6           &kp SPACE  &kp LSHFT    &kp F1   &kp F2            &none   &kp LEFT   &kp DOWN  &kp UP    &kp RIGHT
+&kp ESC    &kp N1  &kp N2    &kp N3    &kp N4  &kp N5                                                    &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &to 0
+&kp TAB    &kp T   &kp Q     &kp W     &kp E   &kp R   &kp LBKT                           &kp RBKT       &kp Y   &kp U   &kp I      &kp O     &kp P     &none
+&kp RALT   &kp G   &kp A     &kp S     &kp D   &kp F   &kp RBKT                           &kp LBKT       &kp H   &kp J   &kp K      &kp L     &kp SEMI  &kp APOS
+&kp LSHFT  &kp B   &kp Z     &kp X     &kp C   &kp V   &kp DOT    &kp COMMA    &kp F11    &kp F12        &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &none
+&kp LCTRL  &kp F5  &kp LALT  &kp LGUI  &mo 6           &kp SPACE  &kp LSHFT    &kp ENTER  &kp BACKSPACE          &mo 0   &kp LEFT   &kp DOWN  &kp UP    &kp RIGHT
             >;
         };
 
